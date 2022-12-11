@@ -199,7 +199,7 @@ ev = []  # евклидова норма оценок параметров
 L = np.diagonal(info_mat)  # взяли диагональку
 L = np.eye(len(L)) * L  # диагональка и нули
 
-while lm < 0.5:
+while lm < 0.5:  # ищем оптимальный параметр регуляризации
     p = np.linalg.inv(
         info_mat + lm * L) @ model.experiment_matrix.T @ model.response  # ридж-оценки при текущем значении лямбда
     yt = model.experiment_matrix @ p.T
@@ -267,7 +267,7 @@ b = np.linalg.inv(Z.T @ Z) @ Z.T @ yzv
 # оценка параметров
 p2 = V.T @ b
 # RSS
-RSSk = sum([((model.experiment_matrix @ p.T)[i] - model.response[i]) ** 2 for i in range(len(model.response))])
+RSSk = np.sum([((model.experiment_matrix @ p.T)[i] - model.response[i]) ** 2 for i in range(len(model.response))])
 # евклидова норма оценок параметров
 EVk = np.linalg.norm(p2)
 
