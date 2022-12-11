@@ -26,7 +26,7 @@ class Model:
         self.signal = []  # сигнал
         self.response = []  # отклик
         self.variance = []  # дисперсия
-        self.theta = np.ones(8)  # параметры модели
+        self.theta = np.ones(7)  # параметры модели
         self.theta_mnk = []  # Оценка теты по МНК
         self.theta_general_mnk = []  # Оценка теты по обобщенному МНК
         self.func = lambda x1, x2, x3, x4, x5, x6, x7: 1 + x1 + x2 + x3 + x4 + x5 + x6 + x7
@@ -216,7 +216,7 @@ while lm < 0.5:  # ищем оптимальный параметр регуля
     lm += 0.05
     lambdas.append(lm)
 
-lambdas.pop()  # удаляем лишний элемент (на него сработал выход значит он нам не нужен)
+lambdas.pop()
 
 # %% Строим нужные графики
 
